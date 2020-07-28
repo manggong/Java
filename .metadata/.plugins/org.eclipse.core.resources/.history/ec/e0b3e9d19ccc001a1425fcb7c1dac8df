@@ -1,0 +1,15 @@
+package reference;
+
+public class Student {
+
+	int studentID;
+	String studentName;
+	
+	Subject korea;
+	Subject math;
+	
+	public Student() {
+		korea = new Subject();
+		math = new Subject();
+		}
+	}

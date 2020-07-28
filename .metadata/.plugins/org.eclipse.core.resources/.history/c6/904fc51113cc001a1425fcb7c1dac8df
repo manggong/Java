@@ -1,0 +1,19 @@
+package classpart;
+
+public class StudentTest {
+
+	public static void main(String[] args) {
+		
+		Student studentKim = new Student();
+		studentKim.studentName = "jihwan";
+		studentKim.address = "이천";
+		
+		studentKim.showStudentInfo();
+		
+		Student studentYang = new Student();
+		studentYang.studentName = "sohyun";
+		studentYang.address = "서울";
+		
+		studentYang.showStudentInfo();
+	}
+}

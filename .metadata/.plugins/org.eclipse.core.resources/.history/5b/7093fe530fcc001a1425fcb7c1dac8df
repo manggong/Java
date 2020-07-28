@@ -1,0 +1,9 @@
+package classpart;
+
+public class PersonTest {
+	
+	public void main() {
+		Person james = new Person();
+	}
+	
+}
