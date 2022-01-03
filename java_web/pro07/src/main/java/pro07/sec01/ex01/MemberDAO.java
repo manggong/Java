@@ -3,8 +3,8 @@ package pro07.sec01.ex01;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class MemberDAO {
 	private String url = "jdbc:mysql://localhost:3306/servlet?useSSL=false";
 	private String username = "root";
 	private String password = "rootroot";
-	private Statement stmt;
+	private PreparedStatement pstmt ;
 	private Connection con;
 
 	public List<MemberVO> listMembers() {
@@ -21,8 +21,8 @@ public class MemberDAO {
 		try {
 			connDB();
 			String query = "select * from t_member";
-			System.out.println(query);
-			ResultSet rs = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				String id = rs.getString("id");
 				String pwd = rs.getString("pwd");
@@ -40,7 +40,7 @@ public class MemberDAO {
 				list.add(vo);
 			}
 			rs.close();
-			stmt.close();
+			pstmt.close();
 			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,8 +54,6 @@ public class MemberDAO {
 			System.out.println("driver load success");
 			con = DriverManager.getConnection(url, username, password);
 			System.out.println("connection success");
-			stmt = con.createStatement();
-			System.out.println("statement success");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
