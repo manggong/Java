@@ -82,7 +82,7 @@ public class MemberControllerImpl implements MemberController {
 			viewName = viewName.substring(0, viewName.lastIndexOf("."));
 		}
 		if (viewName.lastIndexOf("/") != -1) {
-			viewName = viewName.substring(viewName.lastIndexOf("/"), viewName.length());
+			viewName = viewName.substring(viewName.lastIndexOf("/", 1), viewName.length());
 		}
 		return viewName;
 	}
