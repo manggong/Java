@@ -27,11 +27,10 @@ public class MemberControllerImpl implements MemberController {
 	@RequestMapping(value = "/member/listMembers.do", method = RequestMethod.GET)
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		List memberList = memberService.listMembers();
+		List membersList = memberService.listMembers();
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("memberList", memberList);
+		mav.addObject("membersList", membersList);
 		return mav;
-
 	}
 
 	@Override
@@ -55,10 +54,21 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 
-	private String getViewName(HttpServletRequest request) throws Exception {
-		String contextPath = request.getContentType();
-		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
+	/*
+	 * @RequestMapping(value = { "/member/loginForm.do", "/member/memberForm.do" },
+	 * method = RequestMethod.GET)
+	 */
+	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
+	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
 
+	private String getViewName(HttpServletRequest request) throws Exception {
+		String contextPath = request.getContextPath();
+		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
 		if (uri == null || uri.trim().equals("")) {
 			uri = request.getRequestURI();
 		}
