@@ -27,7 +27,7 @@ request.setCharacterEncoding("UTF-8");
 
 			<td>
 				<!-- <a href="#"><h3>로그인</h3></a> --> <c:choose>
-					<c:when test="${isLogOn == true  && member!= null}">
+					<c:when test="${isLogIn == true  && member!= null}">
 						<h3>환영합니다. ${member.name }님!</h3>
 						<a href="${contextPath}/member/logout.do"><h3>로그아웃</h3></a>
 					</c:when>
