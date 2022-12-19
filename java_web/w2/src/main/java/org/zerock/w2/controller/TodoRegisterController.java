@@ -20,6 +20,21 @@ public class TodoRegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.info("/todo/register!!!");
+
+        HttpSession session = request.getSession();
+
+        if(session.isNew()) {
+            log.info("쿠키가 새로 만들어진 사용자");
+            response.sendRedirect("/login");
+            return;
+        }
+
+        if(session.getAttribute("loginInfo") == null) {
+            log.info("로그인한 정보가 없는 사용자!");
+            response.sendRedirect("/login");
+            return;
+        }
+
         request.getRequestDispatcher("/WEB-INF/todo/register.jsp").forward(request, response);
     }
 
