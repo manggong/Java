@@ -16,8 +16,6 @@
     <!--    <bean class="org.zerock.springex.sample.SampleDAO"></bean>-->
     <!--    <bean class="org.zerock.springex.sample.SampleService"></bean>-->
     <!-- 해당 경로의 스프링 어노테이션들 인식 함. -->
-    <context:component-scan base-package="org.zerock.springex.sample"/>
-
     <!-- 스피링 프레임워크 사용 시 히카리 정보를 bean으로 알려줘야 함.-->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
@@ -43,4 +41,7 @@
     </bean>
 
     <mybatis:scan base-package="org.zerock.springex.mapper"></mybatis:scan>
+
+    <context:component-scan base-package="org.zerock.springex.config"/>
+    <context:component-scan base-package="org.zerock.springex.service"/>
 </beans>
